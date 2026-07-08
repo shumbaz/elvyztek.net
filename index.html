@@ -1,864 +1,147 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Elvis Kupara | NGFW Specialist & Certified Security Trainer</title>
-<meta name="description" content="Elvis Kupara — PCNSP-certified Network Security Engineer, NGFW Specialist, and Palo Alto Networks expert. Founder of Kowoyo Networks. SIG-CYBER Founding Committee Member. Available for enterprise security engagements and NGFW training."/>
-<meta name="keywords" content="Elvis Kupara, PCNSP, NGFW Specialist, Palo Alto Networks, Network Security Engineer, Security Trainer, Kowoyo Networks, SIG-CYBER, Firewall Consultant, WildFire, Prisma Access, Zimbabwe, PCSPI"/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
 <style>
-/* ── TOKENS ─────────────────────────────────────────────────────────────── */
-:root{
-  --navy:#0d1f3c;--navy2:#142848;--navy3:#1b3a6b;
-  --teal:#0d9488;--teal-l:#14b8a6;--teal-xl:#5eead4;
-  --teal-glow:rgba(13,148,136,.18);--teal-glow2:rgba(13,148,136,.08);
-  --accent:#38bdf8;--accent-glow:rgba(56,189,248,.15);
-  --gold:#f59e0b;--gold-glow:rgba(245,158,11,.12);
-  --bg:#060e1c;--bg2:#0a1628;--bg3:#0f1f38;
-  --surf:rgba(255,255,255,.04);--surf2:rgba(255,255,255,.07);--surf3:rgba(255,255,255,.10);
-  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.13);
-  --txt:#dde8f8;--txt2:#7a96bc;--txt3:#3f5878;
-  --white:#fff;
-  --ff-d:'Syne',sans-serif;--ff-b:'DM Sans',sans-serif;
-  --r:12px;--r2:20px;
-  --sh:0 8px 40px rgba(0,0,0,.45);
-  --sh-t:0 0 50px rgba(13,148,136,.12);
-  --tr:.3s cubic-bezier(.4,0,.2,1);
-}
-[data-theme=light]{
-  --bg:#f0f5fc;--bg2:#e3ecf8;--bg3:#d5e3f5;
-  --surf:rgba(255,255,255,.75);--surf2:rgba(255,255,255,.92);--surf3:rgba(255,255,255,1);
-  --border:rgba(27,58,107,.1);--border2:rgba(27,58,107,.18);
-  --txt:#0d1f3c;--txt2:#3a5a8a;--txt3:#7a9ac0;
-  --sh:0 8px 40px rgba(13,31,60,.09);
-  --sh-t:0 0 50px rgba(13,148,136,.06);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff-b);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--teal);border-radius:2px}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
+  .wrap { padding: 1.5rem 0; }
+  .cat-block { margin-bottom: 2rem; }
+  .cat-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0.75rem; }
+  .cat-pill { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; white-space: nowrap; margin-top: 2px; }
+  .cat-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px 0; }
+  .cat-desc { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin: 0; }
+  .subtopics { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+  .sub-card { background: var(--color-background-secondary); border: 1px solid var(--color-border-tertiary); border-radius: 8px; padding: 10px 12px; }
+  .sub-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 3px; }
+  .sub-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
+  .divider { border: none; border-top: 1px solid var(--color-border-tertiary); margin: 0 0 1.5rem 0; }
 
-/* ── NOISE ── */
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .pill-security { background: #FCEBEB; color: #791F1F; }
+  .pill-posture   { background: #E6F1FB; color: #0C447C; }
+  .pill-ops       { background: #EAF3DE; color: #27500A; }
+  .pill-sase      { background: #EEEDFE; color: #3C3489; }
+  .pill-ngfw      { background: #FAEEDA; color: #633806; }
+  .pill-devices   { background: #F1EFE8; color: #444441; }
 
-/* ── NAV ── */
-nav{position:fixed;top:0;inset-x:0;z-index:1000;height:66px;
-  display:flex;align-items:center;justify-content:space-between;padding:0 5%;
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  background:rgba(6,14,28,.88);border-bottom:1px solid var(--border);transition:var(--tr)}
-[data-theme=light] nav{background:rgba(240,245,252,.9)}
-.n-logo{font-family:var(--ff-d);font-weight:800;font-size:1.15rem;color:var(--white);letter-spacing:.02em;display:flex;align-items:center;gap:2px}
-[data-theme=light] .n-logo{color:var(--navy)}
-.n-logo b{color:var(--teal)}
-.n-links{display:flex;gap:1.8rem;list-style:none}
-.n-links a{font-size:.78rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--txt2);transition:var(--tr);position:relative}
-.n-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--teal);transition:var(--tr)}
-.n-links a:hover{color:var(--teal-l)}.n-links a:hover::after{width:100%}
-.n-right{display:flex;align-items:center;gap:.75rem}
-.n-theme{background:var(--surf2);border:1px solid var(--border);color:var(--txt2);cursor:pointer;border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:var(--tr)}
-.n-theme:hover{color:var(--teal);border-color:var(--teal)}
-.n-cta{background:var(--teal);color:var(--white);border:none;cursor:pointer;padding:8px 18px;border-radius:8px;font-family:var(--ff-b);font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:var(--tr)}
-.n-cta:hover{background:var(--teal-l);transform:translateY(-1px)}
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.burger span{display:block;width:20px;height:2px;background:var(--txt);border-radius:2px;transition:var(--tr)}
-.mob{display:none;position:fixed;top:66px;inset-x:0;background:var(--bg2);border-bottom:1px solid var(--border);padding:1.2rem 5%;z-index:999}
-.mob.open{display:block}
-.mob a{display:block;padding:.65rem 0;color:var(--txt2);font-size:.88rem;font-weight:500;border-bottom:1px solid var(--border);transition:var(--tr)}
-.mob a:hover{color:var(--teal)}
-
-/* ── HERO ── */
-#hero{min-height:100vh;display:flex;align-items:center;padding:100px 5% 70px;position:relative;overflow:hidden}
-.h-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none}
-.o1{width:600px;height:600px;background:radial-gradient(circle,rgba(13,148,136,.18),transparent 65%);top:-150px;right:-150px}
-.o2{width:450px;height:450px;background:radial-gradient(circle,rgba(13,31,60,.6),transparent 65%);bottom:-100px;left:-100px}
-.o3{width:300px;height:300px;background:radial-gradient(circle,rgba(56,189,248,.08),transparent 65%);top:40%;left:30%}
-.h-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;max-width:1200px;margin:0 auto;width:100%}
-.h-eyebrow{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:.9rem;display:flex;align-items:center;gap:10px}
-.h-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--teal)}
-.h-name{font-family:var(--ff-d);font-weight:800;font-size:clamp(3rem,5.5vw,4.6rem);line-height:1.02;letter-spacing:-.03em;color:var(--white);margin-bottom:1.1rem}
-[data-theme=light] .h-name{color:var(--navy)}
-.h-name .t{color:var(--teal)}
-.h-tw{font-family:var(--ff-d);font-size:clamp(.95rem,1.8vw,1.2rem);color:var(--txt2);margin-bottom:1.5rem;height:1.8rem;display:flex;align-items:center;gap:8px}
-.tw-pre{color:var(--teal-l);font-weight:600}
-.cursor{display:inline-block;width:2px;height:1.1em;background:var(--teal);margin-left:1px;animation:blink 1s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.h-phil{font-size:.95rem;line-height:1.75;color:var(--txt2);border-left:2px solid var(--teal);padding-left:1.1rem;margin-bottom:2rem;max-width:500px}
-.h-phil em{color:var(--teal-l);font-style:normal;font-weight:500}
-.h-btns{display:flex;gap:.85rem;flex-wrap:wrap}
-.btn-p{display:inline-flex;align-items:center;gap:7px;background:var(--teal);color:var(--white);padding:12px 26px;border-radius:9px;font-weight:500;font-size:.88rem;border:none;cursor:pointer;font-family:var(--ff-b);transition:var(--tr)}
-.btn-p:hover{background:var(--teal-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(13,148,136,.35)}
-.btn-o{display:inline-flex;align-items:center;gap:7px;border:1.5px solid var(--border2);color:var(--txt);padding:12px 26px;border-radius:9px;font-weight:500;font-size:.88rem;background:transparent;cursor:pointer;font-family:var(--ff-b);transition:var(--tr)}
-.btn-o:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
-/* hero card */
-.h-visual{display:flex;justify-content:center;align-items:center}
-.h-card{background:var(--surf);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:var(--r2);padding:1.8rem;width:100%;max-width:360px;box-shadow:var(--sh);position:relative;overflow:hidden}
-.h-card::before{content:'';position:absolute;top:0;inset-x:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--accent),var(--teal))}
-.hc-av{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--navy3),var(--teal));display:flex;align-items:center;justify-content:center;font-family:var(--ff-d);font-weight:800;font-size:1.5rem;color:var(--white);margin-bottom:.9rem;border:2px solid var(--teal-glow)}
-.hc-nm{font-family:var(--ff-d);font-weight:700;font-size:1.05rem;color:var(--white);margin-bottom:.15rem}
-[data-theme=light] .hc-nm{color:var(--navy)}
-.hc-rl{font-size:.72rem;color:var(--teal);font-weight:500;margin-bottom:1.1rem;letter-spacing:.05em}
-.hc-sts{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.1rem}
-.hcs{background:var(--surf2);border-radius:8px;padding:.65rem;border:1px solid var(--border);text-align:center}
-.hcs-n{font-family:var(--ff-d);font-size:1.35rem;font-weight:700;color:var(--teal);line-height:1}
-.hcs-l{font-size:.62rem;color:var(--txt3);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
-.hc-tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{font-size:.63rem;font-weight:500;padding:3px 9px;border-radius:20px;background:var(--teal-glow);color:var(--teal-l);border:1px solid rgba(13,148,136,.22)}
-.tag.ac{background:var(--accent-glow);color:var(--accent);border-color:rgba(56,189,248,.2)}
-.tag.go{background:var(--gold-glow);color:var(--gold);border-color:rgba(245,158,11,.25)}
-.h-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--txt3);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase}
-.sc-line{width:1px;height:38px;background:linear-gradient(to bottom,var(--teal),transparent);animation:spulse 2s ease-in-out infinite}
-@keyframes spulse{0%,100%{opacity:1}50%{opacity:.25}}
-
-/* ── SHARED SECTION ── */
-section{padding:88px 5%;position:relative}
-.wrap{max-width:1200px;margin:0 auto}
-.s-lbl{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem;display:flex;align-items:center;gap:8px}
-.s-lbl::before{content:'';display:block;width:22px;height:1px;background:var(--teal)}
-.s-title{font-family:var(--ff-d);font-weight:700;font-size:clamp(1.7rem,3vw,2.5rem);color:var(--white);margin-bottom:.5rem;letter-spacing:-.02em;line-height:1.08}
-[data-theme=light] .s-title{color:var(--navy)}
-.s-sub{color:var(--txt2);max-width:560px;font-size:.94rem;line-height:1.72;margin-bottom:2.8rem}
-
-/* ── ABOUT ── */
-#about{background:var(--bg2)}
-.ab-grid{display:grid;grid-template-columns:1fr 1.45fr;gap:56px;align-items:start}
-.ab-img{width:100%;aspect-ratio:4/5;border-radius:var(--r2);background:linear-gradient(135deg,var(--bg3) 0%,var(--navy3) 55%,rgba(13,148,136,.25) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;border:1px solid var(--border);position:relative;overflow:hidden}
-.ab-img::after{content:'EK';position:absolute;font-family:var(--ff-d);font-weight:800;font-size:9rem;color:rgba(13,148,136,.06);letter-spacing:-.05em;pointer-events:none}
-.ab-img i{font-size:2.8rem;color:rgba(13,148,136,.35);z-index:1}
-.ab-img span{font-size:.7rem;color:var(--txt3);letter-spacing:.12em;text-transform:uppercase;z-index:1}
-.ab-loc{position:absolute;bottom:.9rem;inset-x:.9rem;background:rgba(6,14,28,.82);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;display:flex;align-items:center;gap:7px;z-index:2}
-[data-theme=light] .ab-loc{background:rgba(240,245,252,.9)}
-.ab-loc i{color:var(--teal);font-size:.8rem}
-.ab-loc span{font-size:.76rem;color:var(--txt2)}
-.ab-txt p{color:var(--txt2);line-height:1.78;margin-bottom:1.1rem;font-size:.93rem}
-.ab-txt p strong{color:var(--teal-l);font-weight:500}
-.ab-sts{display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem;margin:1.8rem 0}
-.ab-st{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;position:relative;overflow:hidden;transition:var(--tr)}
-.ab-st::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--teal)}
-.ab-st:hover{border-color:var(--teal);transform:translateY(-2px);box-shadow:var(--sh-t)}
-.ab-st-n{font-family:var(--ff-d);font-size:1.9rem;font-weight:700;color:var(--teal);line-height:1}
-.ab-st-l{font-size:.76rem;color:var(--txt2);margin-top:3px}
-.phil{background:var(--surf);border:1px solid var(--teal-glow);border-radius:var(--r);padding:1.4rem;position:relative}
-.phil::before{content:'\201C';position:absolute;top:-8px;left:.9rem;font-size:3.5rem;color:var(--teal);opacity:.28;font-family:Georgia,serif;line-height:1}
-.phil p{color:var(--txt);font-size:.92rem;line-height:1.72;font-style:italic}
-.phil cite{display:block;margin-top:.7rem;font-size:.7rem;color:var(--teal);font-style:normal;letter-spacing:.06em}
-
-/* ── SIGNATURE PROJECTS ── */
-#projects{background:var(--bg)}
-.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
-.proj-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:1.8rem;position:relative;overflow:hidden;transition:var(--tr);cursor:default}
-.proj-card::before{content:'';position:absolute;inset:0;border-radius:var(--r2);background:linear-gradient(135deg,rgba(13,148,136,.07),transparent);opacity:0;transition:var(--tr)}
-.proj-card:hover{border-color:var(--teal);transform:translateY(-4px);box-shadow:var(--sh-t)}
-.proj-card:hover::before{opacity:1}
-.pc-num{font-family:var(--ff-d);font-size:3rem;font-weight:800;color:rgba(13,148,136,.1);position:absolute;top:.8rem;right:1.2rem;line-height:1;letter-spacing:-.04em;transition:var(--tr)}
-.proj-card:hover .pc-num{color:rgba(13,148,136,.18)}
-.pc-icon{width:44px;height:44px;border-radius:10px;background:var(--teal-glow);border:1px solid rgba(13,148,136,.22);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--teal);margin-bottom:1.1rem}
-.pc-org{font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.4rem}
-.pc-title{font-family:var(--ff-d);font-weight:700;font-size:1.05rem;color:var(--white);margin-bottom:.6rem;line-height:1.2}
-[data-theme=light] .pc-title{color:var(--navy)}
-.pc-body{font-size:.83rem;color:var(--txt2);line-height:1.65;margin-bottom:1rem}
-.pc-metric{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:var(--teal-l);background:var(--teal-glow);border:1px solid rgba(13,148,136,.2);padding:4px 10px;border-radius:20px}
-
-/* ── EXPERTISE ── */
-#expertise{background:var(--bg2)}
-.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
-.exp-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:1.6rem;transition:var(--tr);position:relative;overflow:hidden}
-.exp-card::after{content:'';position:absolute;inset:0;border-radius:var(--r2);background:linear-gradient(135deg,rgba(13,148,136,.05),transparent);opacity:0;transition:var(--tr)}
-.exp-card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:var(--sh-t)}
-.exp-card:hover::after{opacity:1}
-.ec-ic{width:44px;height:44px;border-radius:9px;background:var(--teal-glow);border:1px solid rgba(13,148,136,.22);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--teal);margin-bottom:1.1rem;position:relative;z-index:1}
-.ec-ttl{font-family:var(--ff-d);font-weight:700;font-size:.95rem;color:var(--white);margin-bottom:.5rem;position:relative;z-index:1}
-[data-theme=light] .ec-ttl{color:var(--navy)}
-.ec-dsc{font-size:.8rem;color:var(--txt2);line-height:1.6;margin-bottom:.9rem;position:relative;z-index:1}
-.ec-tgs{display:flex;flex-wrap:wrap;gap:4px;position:relative;z-index:1}
-.ec-tg{font-size:.62rem;padding:3px 7px;border-radius:4px;background:var(--surf2);color:var(--txt3);border:1px solid var(--border)}
-
-/* ── EXPERIENCE ── */
-#experience{background:var(--bg)}
-.tl{position:relative;padding-left:1.8rem}
-.tl::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--teal),rgba(13,148,136,.05))}
-.tl-item{position:relative;margin-bottom:2.8rem;padding-left:2rem}
-.tl-dot{position:absolute;left:-2.3rem;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--teal);box-shadow:0 0 0 4px var(--teal-glow);transition:var(--tr)}
-.tl-item:hover .tl-dot{background:var(--teal);box-shadow:0 0 0 6px var(--teal-glow)}
-.tl-hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.25rem}
-.tl-co{font-family:var(--ff-d);font-weight:700;font-size:1rem;color:var(--white)}
-[data-theme=light] .tl-co{color:var(--navy)}
-.tl-dt{font-size:.72rem;color:var(--teal);font-weight:500;letter-spacing:.05em;white-space:nowrap;margin-top:3px}
-.tl-role{font-size:.82rem;color:var(--teal-l);font-style:italic;margin-bottom:.4rem}
-.tl-loc{font-size:.72rem;color:var(--txt3);margin-bottom:.7rem;display:flex;align-items:center;gap:5px}
-.tl-body{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;transition:var(--tr)}
-.tl-item:hover .tl-body{border-color:rgba(13,148,136,.22)}
-.tl-intro{font-size:.83rem;color:var(--txt2);line-height:1.65;margin-bottom:.9rem;padding-bottom:.9rem;border-bottom:1px solid var(--border)}
-.tl-ul{list-style:none;display:flex;flex-direction:column;gap:.55rem}
-.tl-ul li{font-size:.81rem;color:var(--txt2);line-height:1.55;padding-left:1.1rem;position:relative}
-.tl-ul li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:.65rem;top:3px}
-.tl-ul li strong{color:var(--txt);font-weight:500}
-.tl-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border)}
-
-/* ── CERTIFICATIONS ── */
-#certifications{background:var(--bg2)}
-.cert-row-lbl{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:.9rem;display:flex;align-items:center;gap:8px}
-.cert-row-lbl::before{content:'';display:block;width:16px;height:1px;background:var(--txt3)}
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin-bottom:2.4rem}
-.cert-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:1rem 1.1rem;display:flex;align-items:center;gap:.85rem;transition:var(--tr);position:relative;overflow:hidden}
-.cert-card::after{content:'';position:absolute;right:-15px;top:-15px;width:50px;height:50px;border-radius:50%;background:var(--teal-glow);transition:var(--tr)}
-.cert-card:hover{border-color:var(--teal);transform:translateY(-2px)}
-.cert-card:hover::after{transform:scale(2.5)}
-.cert-card.legacy{opacity:.7}
-.cert-card.legacy:hover{opacity:1}
-.cc-ic{width:36px;height:36px;border-radius:7px;flex-shrink:0;background:var(--teal-glow);border:1px solid rgba(13,148,136,.22);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--teal);z-index:1}
-.cc-ic.gold{background:var(--gold-glow);border-color:rgba(245,158,11,.25);color:var(--gold)}
-.cc-ic.blue{background:var(--accent-glow);border-color:rgba(56,189,248,.2);color:var(--accent)}
-.cc-nm{font-size:.78rem;font-weight:600;color:var(--white);line-height:1.25;margin-bottom:1px;z-index:1}
-[data-theme=light] .cc-nm{color:var(--navy)}
-.cc-is{font-size:.66rem;color:var(--txt3);z-index:1}
-/* in-progress */
-.ip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.9rem}
-.ip-card{background:var(--surf);border:1.5px dashed rgba(56,189,248,.25);border-radius:var(--r);padding:1.1rem;transition:var(--tr)}
-.ip-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.ip-card.star{border-color:rgba(245,158,11,.4);background:rgba(245,158,11,.03)}
-.ip-card.star:hover{border-color:var(--gold)}
-.ip-hdr{display:flex;align-items:center;gap:.7rem;margin-bottom:.55rem}
-.ip-ic{width:34px;height:34px;border-radius:7px;flex-shrink:0;background:var(--accent-glow);border:1px solid rgba(56,189,248,.2);display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--accent)}
-.ip-ic.star{background:var(--gold-glow);border-color:rgba(245,158,11,.25);color:var(--gold)}
-.ip-nm{font-size:.8rem;font-weight:600;color:var(--white);line-height:1.25}
-[data-theme=light] .ip-nm{color:var(--navy)}
-.ip-note{font-size:.68rem;color:var(--accent);letter-spacing:.04em}
-.ip-note.star{color:var(--gold)}
-.prog{width:100%;height:2.5px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:.5rem}
-.prog-f{height:100%;background:linear-gradient(90deg,var(--teal),var(--accent));border-radius:2px;width:0;transition:width 1.6s ease}
-.prog-f.gold{background:linear-gradient(90deg,var(--gold),#fbbf24)}
-
-/* ── TRAINING ── */
-#training{background:var(--bg)}
-.tr-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
-.tr-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:1.9rem;transition:var(--tr);position:relative;overflow:hidden}
-.tr-card:hover{border-color:var(--teal);box-shadow:var(--sh-t)}
-.tr-badge{display:inline-flex;align-items:center;gap:5px;font-size:.67rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);background:var(--teal-glow);border:1px solid rgba(13,148,136,.22);padding:4px 11px;border-radius:20px;margin-bottom:1.1rem}
-.tr-title{font-family:var(--ff-d);font-size:1.25rem;font-weight:700;color:var(--white);margin-bottom:.7rem}
-[data-theme=light] .tr-title{color:var(--navy)}
-.tr-body{font-size:.84rem;color:var(--txt2);line-height:1.72;margin-bottom:1.1rem}
-.tr-ul{list-style:none;display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.4rem}
-.tr-ul li{font-size:.8rem;color:var(--txt2);padding-left:1.1rem;position:relative;line-height:1.55}
-.tr-ul li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700;font-size:.7rem}
-.tr-lnk{display:inline-flex;align-items:center;gap:5px;color:var(--teal);font-size:.8rem;font-weight:500;transition:var(--tr)}
-.tr-lnk:hover{color:var(--teal-l);gap:9px}
-
-/* ── CONTACT ── */
-#contact{background:var(--bg2)}
-.ct-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start}
-.ct-items{display:flex;flex-direction:column;gap:1.1rem}
-.ct-item{display:flex;align-items:flex-start;gap:.9rem;padding:1.1rem;background:var(--surf);border:1px solid var(--border);border-radius:var(--r);transition:var(--tr)}
-.ct-item:hover{border-color:var(--teal)}
-.ct-ic{width:40px;height:40px;border-radius:8px;flex-shrink:0;background:var(--teal-glow);border:1px solid rgba(13,148,136,.22);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--teal)}
-.ct-lbl{font-size:.66rem;color:var(--txt3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:1px}
-.ct-val{font-size:.88rem;color:var(--txt);font-weight:500}
-.ct-val a{transition:var(--tr)}.ct-val a:hover{color:var(--teal)}
-.ct-form{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:1.9rem}
-.fg{margin-bottom:1.1rem}
-.fg label{display:block;font-size:.7rem;color:var(--txt2);letter-spacing:.09em;text-transform:uppercase;margin-bottom:.45rem}
-.fg input,.fg textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:.8rem .95rem;color:var(--txt);font-family:var(--ff-b);font-size:.88rem;transition:var(--tr);outline:none;resize:none}
-.fg input:focus,.fg textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-glow)}
-.fg textarea{height:110px}
-.form-ok{display:none;text-align:center;padding:2rem;color:var(--teal);font-weight:500}
-.form-ok i{font-size:1.8rem;display:block;margin-bottom:.5rem}
-
-/* ── FOOTER ── */
-footer{background:var(--bg3);border-top:1px solid var(--border);padding:1.8rem 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.ft-copy{font-size:.75rem;color:var(--txt3)}
-.ft-copy span{color:var(--teal)}
-.ft-soc{display:flex;gap:.75rem}
-.ft-soc a{width:34px;height:34px;border-radius:7px;background:var(--surf);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--txt2);font-size:.85rem;transition:var(--tr)}
-.ft-soc a:hover{color:var(--teal);border-color:var(--teal)}
-
-/* ── CORE PROBLEM ── */
-#problem{background:var(--bg3);overflow:hidden}
-.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-.prob-quote{background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.2);border-radius:var(--r);padding:1.4rem 1.6rem;margin-bottom:1.4rem;position:relative}
-.prob-quote::before{content:'\201C';position:absolute;top:-10px;left:1rem;font-size:3.5rem;color:rgba(220,38,38,.3);font-family:Georgia,serif;line-height:1}
-.prob-quote p{font-size:.88rem;color:#fca5a5;line-height:1.7;font-style:italic;margin-bottom:.5rem}
-.prob-quote cite{font-size:.7rem;color:rgba(252,165,165,.6);letter-spacing:.06em;font-style:normal}
-.prob-body{font-size:.87rem;color:var(--txt2);line-height:1.72;margin-bottom:.9rem}
-.prob-body strong{color:var(--txt);font-weight:500}
-.prob-col-lbl{font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(220,38,38,.7);margin-bottom:1.1rem;display:flex;align-items:center;gap:8px}
-.prob-col-lbl::before{content:'';display:block;width:18px;height:1px;background:rgba(220,38,38,.5)}
-.ans-item{display:flex;gap:1rem;margin-bottom:1.4rem}
-.ans-num{font-family:var(--ff-d);font-size:.7rem;font-weight:800;color:var(--teal);background:var(--teal-glow);border:1px solid rgba(13,148,136,.25);border-radius:6px;padding:4px 8px;flex-shrink:0;height:fit-content;letter-spacing:.04em}
-.ans-body{font-size:.86rem;color:var(--txt2);line-height:1.68}
-.ans-body strong{color:var(--txt);font-weight:600}
-.prob-closer{font-size:.88rem;color:var(--txt2);line-height:1.7;padding-top:1.2rem;border-top:1px solid var(--border);font-style:italic}
-.prob-closer strong{color:var(--teal-l);font-weight:500;font-style:normal}
-
-/* ── TRAINING ORG ── */
-#kowoyo{background:var(--bg2)}
-.kow-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:3.5rem;align-items:center}
-.kow-content p{font-size:.92rem;color:var(--txt2);line-height:1.78;margin-bottom:1rem}
-.kow-content p strong{color:var(--teal-l);font-weight:500}
-.kow-content p em{color:var(--txt);font-style:normal;font-weight:500}
-.kow-cta{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:var(--white);padding:13px 28px;border-radius:9px;font-weight:600;font-size:.88rem;border:none;cursor:pointer;font-family:var(--ff-b);transition:var(--tr);margin-top:.5rem;text-decoration:none}
-.kow-cta:hover{background:var(--teal-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(13,148,136,.35)}
-.kow-visual{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:2rem;position:relative;overflow:hidden}
-.kow-visual::before{content:'';position:absolute;top:0;inset-x:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--accent),var(--teal))}
-.kow-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-bottom:1.4rem}
-.kow-stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1rem;text-align:center;transition:var(--tr)}
-.kow-stat:hover{border-color:var(--teal)}
-.kow-stat-n{font-family:var(--ff-d);font-size:1.6rem;font-weight:700;color:var(--teal);line-height:1}
-.kow-stat-l{font-size:.68rem;color:var(--txt3);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
-.kow-modules{list-style:none;display:flex;flex-direction:column;gap:.5rem}
-.kow-modules li{font-size:.8rem;color:var(--txt2);padding-left:1.1rem;position:relative;line-height:1.5}
-.kow-modules li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:.65rem;top:3px}
-.pcspi-box{background:var(--gold-glow);border:1px solid rgba(245,158,11,.3);border-radius:var(--r);padding:1rem 1.2rem;margin-top:1.2rem;display:flex;align-items:flex-start;gap:.8rem}
-.pcspi-ic{color:var(--gold);font-size:1.1rem;flex-shrink:0;margin-top:2px}
-.pcspi-txt{font-size:.8rem;color:var(--txt2);line-height:1.6}
-.pcspi-txt strong{color:var(--gold);font-weight:600}
-
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
-.rv.on{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
-
-/* ── RESPONSIVE ── */
-@media(max-width:960px){
-  .h-grid{grid-template-columns:1fr;gap:2.5rem}
-  .h-visual{order:-1}
-  .h-card{max-width:100%}
-  .ab-grid{grid-template-columns:1fr}
-  .ab-img{aspect-ratio:16/9;max-width:460px}
-  .prob-grid{grid-template-columns:1fr}
-  .proj-grid{grid-template-columns:1fr}
-  .exp-grid{grid-template-columns:repeat(2,1fr)}
-  .kow-grid{grid-template-columns:1fr}
-  .ct-grid{grid-template-columns:1fr}
-}
-@media(max-width:640px){
-  .n-links,.n-cta{display:none}.burger{display:flex}
-  section{padding:66px 5%}
-  .exp-grid{grid-template-columns:1fr}
-  .ab-sts{grid-template-columns:1fr 1fr}
-  .kow-stat-grid{grid-template-columns:1fr 1fr}
-  .h-btns{flex-direction:column;align-items:flex-start}
-}
+  @media (prefers-color-scheme: dark) {
+    .pill-security { background: #501313; color: #F7C1C1; }
+    .pill-posture   { background: #042C53; color: #B5D4F4; }
+    .pill-ops       { background: #173404; color: #C0DD97; }
+    .pill-sase      { background: #26215C; color: #CECBF6; }
+    .pill-ngfw      { background: #412402; color: #FAC775; }
+    .pill-devices   { background: #2C2C2A; color: #D3D1C7; }
+  }
 </style>
-</head>
-<body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#hero" class="n-logo">EK<b>.</b></a>
-  <ul class="n-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#problem">The Problem</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#certifications">Certs</a></li>
-    <li><a href="#kowoyo">Training</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="n-right">
-    <button class="n-theme" id="themeBtn" aria-label="Toggle theme"><i class="fa-solid fa-moon" id="themeIco"></i></button>
-    <a href="#contact" class="n-cta">Hire Me</a>
-    <div class="burger" id="burger" role="button" tabindex="0" aria-label="Menu"><span></span><span></span><span></span></div>
+<div class="wrap">
+
+  <div class="cat-block">
+    <div class="cat-header">
+      <span class="cat-pill pill-security">Security</span>
+      <div>
+        <p class="cat-title">Security</p>
+        <p class="cat-desc">Surfaces live threat intelligence, malware analysis, and device-level risk across your entire estate. Gives security leaders a consolidated view of active threats without needing to query individual firewalls manually.</p>
+      </div>
+    </div>
+    <div class="subtopics">
+      <div class="sub-card"><div class="sub-name">AI Access</div><div class="sub-desc">Tracks and controls which AI apps and services users are accessing across the network.</div></div>
+      <div class="sub-card"><div class="sub-name">Executive Summary</div><div class="sub-desc">A high-level, non-technical overview of security posture designed for leadership and board-level reporting.</div></div>
+      <div class="sub-card"><div class="sub-name">WildFire</div><div class="sub-desc">Shows malware analysis results from PANW's cloud-based threat detonation and intelligence platform.</div></div>
+      <div class="sub-card"><div class="sub-name">Advanced Threat Prevention</div><div class="sub-desc">Reports on detected intrusion attempts, exploits, and command-and-control traffic blocked across your firewalls.</div></div>
+      <div class="sub-card"><div class="sub-name">Device Security</div><div class="sub-desc">Monitors the security health and risk profile of individual endpoint and network devices.</div></div>
+      <div class="sub-card"><div class="sub-name">Threat Search</div><div class="sub-desc">Allows teams to query threat logs and hunt for indicators of compromise across the estate.</div></div>
+    </div>
   </div>
-</nav>
-<div class="mob" id="mob">
-  <a href="#about" onclick="cMob()">About</a>
-  <a href="#problem" onclick="cMob()">The Problem</a>
-  <a href="#projects" onclick="cMob()">Signature Projects</a>
-  <a href="#experience" onclick="cMob()">Experience</a>
-  <a href="#certifications" onclick="cMob()">Certifications</a>
-  <a href="#kowoyo" onclick="cMob()">Training</a>
-  <a href="#contact" onclick="cMob()">Contact</a>
+
+  <hr class="divider">
+
+  <div class="cat-block">
+    <div class="cat-header">
+      <span class="cat-pill pill-posture">Posture</span>
+      <div>
+        <p class="cat-title">Posture</p>
+        <p class="cat-desc">Continuously evaluates whether your firewalls are configured correctly, compliant with frameworks, and making full use of licensed security features. Replaces periodic manual audits with a live compliance and best-practice picture.</p>
+      </div>
+    </div>
+    <div class="subtopics">
+      <div class="sub-card"><div class="sub-name">CDSS Adoption</div><div class="sub-desc">Shows which Cloud-Delivered Security Services subscriptions are enabled and actively in use across devices.</div></div>
+      <div class="sub-card"><div class="sub-name">Compliance Summary</div><div class="sub-desc">Maps your current firewall configurations against regulatory and industry compliance frameworks.</div></div>
+      <div class="sub-card"><div class="sub-name">Security Posture Insights</div><div class="sub-desc">Identifies configuration gaps and security weaknesses across the firewall fleet in one unified view.</div></div>
+      <div class="sub-card"><div class="sub-name">PAN-OS CVEs</div><div class="sub-desc">Highlights which devices are running software versions affected by known vulnerabilities.</div></div>
+      <div class="sub-card"><div class="sub-name">On Demand SPA</div><div class="sub-desc">Runs a Security Posture Assessment on demand to generate a scored review of your environment.</div></div>
+      <div class="sub-card"><div class="sub-name">Feature Adoption</div><div class="sub-desc">Tracks which licensed firewall features are deployed and which remain unused or misconfigured.</div></div>
+      <div class="sub-card"><div class="sub-name">Compliance Center</div><div class="sub-desc">Centralised dashboard for monitoring adherence to specific compliance policies over time.</div></div>
+      <div class="sub-card"><div class="sub-name">Zero Trust Posture Center</div><div class="sub-desc">Measures how closely your environment aligns with Zero Trust architecture principles.</div></div>
+      <div class="sub-card"><div class="sub-name">Best Practices</div><div class="sub-desc">Provides PANW-recommended configuration benchmarks and highlights deviations across your devices.</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cat-block">
+    <div class="cat-header">
+      <span class="cat-pill pill-ops">Operational</span>
+      <div>
+        <p class="cat-title">Operational</p>
+        <p class="cat-desc">Monitors how well your security infrastructure is serving the business — covering application performance, user experience, and network health. Ensures security tools enhance rather than hinder productivity.</p>
+      </div>
+    </div>
+    <div class="subtopics">
+      <div class="sub-card"><div class="sub-name">Application Acceleration</div><div class="sub-desc">Shows where SD-WAN and traffic optimisation policies are improving application delivery performance.</div></div>
+      <div class="sub-card"><div class="sub-name">Application Experience</div><div class="sub-desc">Measures end-user experience quality for key business applications traversing the network.</div></div>
+      <div class="sub-card"><div class="sub-name">Netssec Health</div><div class="sub-desc">Monitors the operational health and availability of network security components across the estate.</div></div>
+      <div class="sub-card"><div class="sub-name">Access Analyser</div><div class="sub-desc">Analyses user and device access patterns to surface anomalies and policy enforcement gaps.</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cat-block">
+    <div class="cat-header">
+      <span class="cat-pill pill-sase">Prisma SASE</span>
+      <div>
+        <p class="cat-title">Prisma SASE</p>
+        <p class="cat-desc">Provides unified visibility across PANW's cloud-delivered Secure Access Service Edge platform, covering SD-WAN, branch connectivity, data centres, and remote access. Relevant for organisations with distributed workforces or multiple locations.</p>
+      </div>
+    </div>
+    <div class="subtopics">
+      <div class="sub-card"><div class="sub-name">Prisma SD-WAN Dashboard</div><div class="sub-desc">Overview of SD-WAN link health, performance, and traffic distribution across all sites.</div></div>
+      <div class="sub-card"><div class="sub-name">Prisma SD-WAN Applications</div><div class="sub-desc">Tracks how applications are performing across SD-WAN links and which policies are applied.</div></div>
+      <div class="sub-card"><div class="sub-name">Branch Sites</div><div class="sub-desc">Monitors connectivity, security status, and performance metrics for branch office locations.</div></div>
+      <div class="sub-card"><div class="sub-name">Data Centers</div><div class="sub-desc">Provides visibility into data centre traffic flows, security policy enforcement, and capacity.</div></div>
+      <div class="sub-card"><div class="sub-name">Prisma Access Locations</div><div class="sub-desc">Shows the status and performance of PANW's global cloud security infrastructure nodes.</div></div>
+      <div class="sub-card"><div class="sub-name">Network Services</div><div class="sub-desc">Covers DNS, DHCP, and other foundational network services delivered through the SASE platform.</div></div>
+      <div class="sub-card"><div class="sub-name">Prisma Access Usage</div><div class="sub-desc">Reports on remote access adoption, user counts, and bandwidth consumption via Prisma Access.</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cat-block">
+    <div class="cat-header">
+      <span class="cat-pill pill-ngfw">NGFW</span>
+      <div>
+        <p class="cat-title">NGFW</p>
+        <p class="cat-desc">Manages the life cycle and health of your physical and virtual Palo Alto firewalls — covering capacity planning, software currency, status monitoring, and upgrade guidance. Eliminates manual fleet management at scale.</p>
+      </div>
+    </div>
+    <div class="subtopics">
+      <div class="sub-card"><div class="sub-name">Capacity Analyser</div><div class="sub-desc">Assesses whether your firewalls are appropriately sized for current and projected traffic loads.</div></div>
+      <div class="sub-card"><div class="sub-name">SD-WAN Dashboard</div><div class="sub-desc">Provides SD-WAN performance and link status specific to NGFW-based deployments.</div></div>
+      <div class="sub-card"><div class="sub-name">Status and Monitoring</div><div class="sub-desc">Real-time health and availability monitoring across all managed firewall devices in the estate.</div></div>
+      <div class="sub-card"><div class="sub-name">Upgrade Recommendations</div><div class="sub-desc">Identifies which devices need PAN-OS upgrades and prioritises them based on vulnerability exposure.</div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="cat-block">
+    <div class="cat-header">
+      <span class="cat-pill pill-devices">Devices</span>
+      <div>
+        <p class="cat-title">Devices</p>
+        <p class="cat-desc">Extends security visibility to IoT and unmanaged devices connecting to the network, identifying and profiling them automatically. Critical for organisations where non-traditional endpoints represent a growing attack surface.</p>
+      </div>
+    </div>
+    <div class="subtopics">
+      <div class="sub-card"><div class="sub-name">IoT</div><div class="sub-desc">Discovers, profiles, and monitors Internet of Things devices to enforce appropriate security policies.</div></div>
+    </div>
+  </div>
+
 </div>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="h-orb o1"></div><div class="h-orb o2"></div><div class="h-orb o3"></div>
-  <div class="h-grid wrap">
-    <div>
-      <p class="h-eyebrow">PCNSP · Network Security Professional</p>
-      <h1 class="h-name">Elvis<br/><span class="t">Kupara</span></h1>
-      <div class="h-tw">
-        <span class="tw-pre">&gt;_</span>
-        <span id="tw"></span><span class="cursor"></span>
-      </div>
-      <p class="h-phil">NGFWs are <em>not</em> connectivity appliances — they are <em>protection platforms</em>. My career is built around unlocking their full security potential to deliver measurable improvements in visibility, risk reduction, and ROI.</p>
-      <div class="h-btns">
-        <a href="#contact" class="btn-p"><i class="fa-solid fa-envelope"></i> Get In Touch</a>
-        <a href="#projects" class="btn-o"><i class="fa-solid fa-diagram-project"></i> Signature Projects</a>
-      </div>
-    </div>
-    <div class="h-visual">
-      <div class="h-card">
-        <div class="hc-av">EK</div>
-        <div class="hc-nm">Elvis Kupara</div>
-        <div class="hc-rl">NGFW Specialist · Security Trainer · Zimbabwe</div>
-        <div class="hc-sts">
-          <div class="hcs"><div class="hcs-n">7+</div><div class="hcs-l">Yrs Experience</div></div>
-          <div class="hcs"><div class="hcs-n">4</div><div class="hcs-l">Continents</div></div>
-          <div class="hcs"><div class="hcs-n">15K+</div><div class="hcs-l">Users Secured</div></div>
-          <div class="hcs"><div class="hcs-n">35+</div><div class="hcs-l">Firewalls Managed</div></div>
-        </div>
-        <div class="hc-tags">
-          <span class="tag">PCNSP</span>
-          <span class="tag">CCNA</span>
-          <span class="tag">NSE3</span>
-          <span class="tag">MCSE/MCT</span>
-          <span class="tag go">PCSPI (2026)</span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="h-scroll" aria-hidden="true"><div class="sc-line"></div><span>scroll</span></div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="ab-grid">
-      <div class="rv">
-        <div class="ab-img" role="img" aria-label="Elvis Kupara photo placeholder">
-          <i class="fa-solid fa-user"></i>
-          <span>Photo Coming Soon</span>
-          <div class="ab-loc"><i class="fa-solid fa-location-dot"></i><span>Zimbabwe · Cape Town, SA</span></div>
-        </div>
-      </div>
-      <div class="ab-txt">
-        <p class="s-lbl rv">About</p>
-        <h2 class="s-title rv d1">Turning Firewall Capability Into Business Outcomes</h2>
-        <p class="rv d2">I'm a network security engineer and NGFW specialist with <strong>7+ years</strong> delivering enterprise-grade firewall security across MSSP, public sector, and independent consulting environments. Holding the <strong>PCNSP (Palo Alto Networks Certified Network Security Professional)</strong>, I bring depth across the full PANW security stack.</p>
-        <p class="rv d2">My specialisation is activating complete NGFW intelligence — <strong>App-ID, User-ID, Content-ID, WildFire, DNS Security, SSL/TLS decryption, DLP, and AIOps</strong> — environments that stop using their firewalls as expensive routers and start using them as the protection platforms they were designed to be.</p>
-        <p class="rv d3">As <strong>Founder of Kowoyo Networks</strong> and a <strong>Founding Committee Member of SIG-CYBER</strong> (IITPSA), I extend that philosophy through training, mentorship, and industry community leadership across Southern Africa.</p>
-        <div class="ab-sts rv d3">
-          <div class="ab-st"><div class="ab-st-n">7+</div><div class="ab-st-l">Years enterprise network security</div></div>
-          <div class="ab-st"><div class="ab-st-n">4</div><div class="ab-st-l">Continents of firewall operations</div></div>
-          <div class="ab-st"><div class="ab-st-n">15K+</div><div class="ab-st-l">Users secured in COVID crisis</div></div>
-          <div class="ab-st"><div class="ab-st-n">35+</div><div class="ab-st-l">Firewalls managed simultaneously</div></div>
-        </div>
-        <div class="phil rv d4">
-          <p>An NGFW is not a router with an expensive licence. Every underutilised feature is a gap in your defences and a gap in your ROI. My job is to close both.</p>
-          <cite>— Elvis Kupara</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CORE PROBLEM -->
-<section id="problem">
-  <div class="wrap">
-    <p class="s-lbl rv">The Core Problem</p>
-    <h2 class="s-title rv d1">Your NGFW is probably underperforming. Here's why.</h2>
-    <div class="prob-grid" style="margin-top:2.5rem">
-      <div>
-        <p class="prob-col-lbl rv">The Industry Problem</p>
-        <div class="prob-quote rv d1">
-          <p>"Through 2023, 99% of firewall breaches will be caused by misconfiguration, not firewall flaws."</p>
-          <cite>— Gartner Research</cite>
-        </div>
-        <p class="prob-body rv d2">Most organizations invest heavily in <strong>Next-Generation Firewalls</strong> — then deploy them as glorified routers.</p>
-        <p class="prob-body rv d2">App-ID disabled. SSL/TLS inspection off. WildFire not subscribed. User-ID not configured. DNS Security inactive. DLP untouched.</p>
-        <p class="prob-body rv d3">Every <strong>unused capability is an unmitigated risk</strong>. Every unlicensed-but-subscribed feature is wasted investment. The firewall passes traffic it should be blocking — and nobody knows.</p>
-        <p class="prob-body rv d3">The problem isn't the technology. It's the operational gap between what the platform can do and what it's actually doing.</p>
-      </div>
-      <div>
-        <p class="prob-col-lbl rv">Elvis's Two-Pronged Answer</p>
-        <div class="ans-item rv d1">
-          <span class="ans-num">01</span>
-          <div class="ans-body"><strong>Fix it operationally.</strong> Through Security Lifecycle Reviews, Best Practice Assessments, configuration audits, and hands-on remediation — Elvis surfaces misconfigurations before they become exploitable vulnerabilities, activates dormant capabilities, and aligns your environment to Zero Trust principles.</div>
-        </div>
-        <div class="ans-item rv d2">
-          <span class="ans-num">02</span>
-          <div class="ans-body"><strong>Prevent recurrence through training.</strong> Remediation without capability-building is a temporary fix. Elvis builds the organisational competency that sustains good posture over time — training the engineers and educating the decision-makers who are responsible for keeping it that way.</div>
-        </div>
-        <p class="prob-closer rv d3">This dual capability — <strong>practitioner and educator</strong> — is rare. Most consultants can fix it. Elvis fixes it and makes sure it stays fixed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SIGNATURE PROJECTS -->
-<section id="projects">
-  <div class="wrap">
-    <p class="s-lbl rv">Impact</p>
-    <h2 class="s-title rv d1">Signature Projects</h2>
-    <p class="s-sub rv d2">Engagements where full-stack security thinking delivered real, measurable outcomes.</p>
-    <div class="proj-grid">
-      <div class="proj-card rv">
-        <div class="pc-num">01</div>
-        <div class="pc-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <div class="pc-org">City of Cape Town</div>
-        <div class="pc-title">GlobalProtect VPN for 15,000 Users</div>
-        <div class="pc-body">Designed and deployed a secure GlobalProtect Remote Access VPN solution enabling 15,000 municipal employees to work from home — delivered within days of the national COVID-19 lockdown announcement, ensuring uninterrupted government service delivery under crisis conditions.</div>
-        <span class="pc-metric"><i class="fa-solid fa-users"></i> 15,000 users secured</span>
-      </div>
-      <div class="proj-card rv d1">
-        <div class="pc-num">02</div>
-        <div class="pc-icon"><i class="fa-solid fa-globe"></i></div>
-        <div class="pc-org">Dimension Data</div>
-        <div class="pc-title">Multi-Continent Firewall Operations</div>
-        <div class="pc-body">Managed 35+ Palo Alto and FortiGate NGFWs spanning 5 cities across 4 continents via Panorama, delivering consistent policy hygiene, SSL/TLS decryption governance, threat prevention efficacy, and operational consistency across a geographically distributed enterprise estate.</div>
-        <span class="pc-metric"><i class="fa-solid fa-earth-africa"></i> 4 continents · 35+ devices</span>
-      </div>
-      <div class="proj-card rv d2">
-        <div class="pc-num">03</div>
-        <div class="pc-icon"><i class="fa-solid fa-chart-line"></i></div>
-        <div class="pc-org">Kowoyo Networks</div>
-        <div class="pc-title">NGFW Capability Adoption & ROI</div>
-        <div class="pc-body">Helped multiple organisations unlock advanced NGFW features that were licensed but dormant — activating App-ID, WildFire, DNS Security, and DLP to reduce risk exposure and maximise the value of existing security investments through SLRs and BPA-led capability adoption planning.</div>
-        <span class="pc-metric"><i class="fa-solid fa-arrow-trend-up"></i> Measurable posture improvement</span>
-      </div>
-      <div class="proj-card rv d3">
-        <div class="pc-num">04</div>
-        <div class="pc-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-        <div class="pc-org">Multiple Clients</div>
-        <div class="pc-title">Security Lifecycle Reviews & BPAs</div>
-        <div class="pc-body">Delivered Security Lifecycle Reviews, Best Practice Assessments, and configuration audits across multiple client environments — identifying misconfigurations, closing security posture gaps, and aligning firewall configurations with Zero Trust principles before those gaps could be exploited.</div>
-        <span class="pc-metric"><i class="fa-solid fa-shield-check"></i> Zero Trust alignment</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERTISE -->
-<section id="expertise">
-  <div class="wrap">
-    <p class="s-lbl rv">Core Skills</p>
-    <h2 class="s-title rv d1">Areas of Expertise</h2>
-    <p class="s-sub rv d2">Full-stack security capability across NGFW platforms, cloud, threat prevention, and knowledge transfer.</p>
-    <div class="exp-grid">
-      <div class="exp-card rv">
-        <div class="ec-ic"><i class="fa-solid fa-fire-flame-curved"></i></div>
-        <div class="ec-ttl">NGFW Platforms & Management</div>
-        <div class="ec-dsc">Full lifecycle management of Palo Alto Networks NGFWs — from rulebase engineering and policy hygiene to HA operations, Panorama centralisation, and Strata Cloud Manager orchestration.</div>
-        <div class="ec-tgs"><span class="ec-tg">PA-Series</span><span class="ec-tg">VM-Series</span><span class="ec-tg">Panorama</span><span class="ec-tg">SCM</span><span class="ec-tg">AIOps</span><span class="ec-tg">SSL/TLS Decryption</span></div>
-      </div>
-      <div class="exp-card rv d1">
-        <div class="ec-ic"><i class="fa-solid fa-bug-slash"></i></div>
-        <div class="ec-ttl">Threat Prevention & Intelligence</div>
-        <div class="ec-dsc">Activating the full threat prevention stack — App-ID, User-ID, Content-ID, WildFire, DNS Security, DLP, IDS/IPS tuning, and IoC analysis — making threats visible and stoppable.</div>
-        <div class="ec-tgs"><span class="ec-tg">WildFire</span><span class="ec-tg">App-ID</span><span class="ec-tg">DNS Security</span><span class="ec-tg">DLP</span><span class="ec-tg">IDS/IPS</span><span class="ec-tg">AutoFocus</span></div>
-      </div>
-      <div class="exp-card rv d2">
-        <div class="ec-ic"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-        <div class="ec-ttl">Cloud Security & SASE</div>
-        <div class="ec-dsc">Securing hybrid and multi-cloud environments through Prisma SASE, Cloud NGFW for AWS/GCP/Azure, ZTNA, and GlobalProtect — consistent policy enforcement wherever users and workloads live.</div>
-        <div class="ec-tgs"><span class="ec-tg">Prisma SASE</span><span class="ec-tg">ZTNA</span><span class="ec-tg">Cloud NGFW</span><span class="ec-tg">GlobalProtect</span><span class="ec-tg">IPSec VPN</span></div>
-      </div>
-      <div class="exp-card rv">
-        <div class="ec-ic"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-        <div class="ec-ttl">Monitoring & Operations</div>
-        <div class="ec-dsc">Continuous traffic monitoring, SIEM integration, log pipeline optimisation, SolarWinds and Wireshark analysis — maintaining persistent visibility across complex, distributed security estates.</div>
-        <div class="ec-tgs"><span class="ec-tg">SIEM</span><span class="ec-tg">SolarWinds</span><span class="ec-tg">NetFlow</span><span class="ec-tg">ServiceNow</span><span class="ec-tg">ITSM</span></div>
-      </div>
-      <div class="exp-card rv d1">
-        <div class="ec-ic"><i class="fa-solid fa-chalkboard-user"></i></div>
-        <div class="ec-ttl">Training & Knowledge Transfer</div>
-        <div class="ec-dsc">Technical and non-technical stakeholder education, NGFW operations training, Security Lifecycle Reviews, and BPAs — translating security investment into measurable posture improvements and ROI.</div>
-        <div class="ec-tgs"><span class="ec-tg">SLR</span><span class="ec-tg">BPA</span><span class="ec-tg">PAN-OS</span><span class="ec-tg">Security Awareness</span><span class="ec-tg">ROI Optimisation</span></div>
-      </div>
-      <div class="exp-card rv d2">
-        <div class="ec-ic"><i class="fa-solid fa-scale-balanced"></i></div>
-        <div class="ec-ttl">Compliance, Audit & Governance</div>
-        <div class="ec-dsc">Configuration audits, capability adoption planning, risk reduction metrics and reporting — aligning firewall environments with Zero Trust principles and organisational security governance frameworks.</div>
-        <div class="ec-tgs"><span class="ec-tg">Zero Trust</span><span class="ec-tg">Config Audit</span><span class="ec-tg">Risk Metrics</span><span class="ec-tg">Policy Hygiene</span><span class="ec-tg">BPA/SLR</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="wrap">
-    <p class="s-lbl rv">Career</p>
-    <h2 class="s-title rv d1">Employment History</h2>
-    <p class="s-sub rv d2">From managing firewall estates across 4 continents to deploying emergency government infrastructure under lockdown — a track record built on outcomes.</p>
-    <div class="tl">
-
-      <div class="tl-item rv">
-        <div class="tl-dot"></div>
-        <div class="tl-hdr">
-          <div><div class="tl-co">Kowoyo Networks</div><div class="tl-role">Founder & Principal Trainer</div><div class="tl-loc"><i class="fa-solid fa-location-dot"></i> Harare, Zimbabwe</div></div>
-          <div class="tl-dt">June 2023 – Present</div>
-        </div>
-        <div class="tl-body">
-          <p class="tl-intro">Founded and operate an independent enterprise network security training organisation specialising in Palo Alto Networks NGFW platforms — designing curriculum that upskills technical teams from foundational awareness to operational proficiency in PAN-OS, security policy management, and full-stack NGFW capability utilisation.</p>
-          <ul class="tl-ul">
-            <li>Delivered hands-on NGFW training building competency from <strong>initial configuration through advanced threat prevention</strong>, across technical and non-technical stakeholder audiences.</li>
-            <li>Conducted specialised sessions on <strong>Security Risk Assessments, SLRs, Firewall Policy Reviews, and BPAs</strong> — helping organisations identify and close configuration gaps before they become exploitable vulnerabilities.</li>
-            <li>Advised organisations on <strong>maximising ROI</strong> from NGFW investments by activating underutilised security features, translating technical capability into measurable security posture improvements.</li>
-            <li>Educated C-suite and operations leadership on <strong>device capability, risk implications, and security investment value</strong>, enabling informed security governance decisions.</li>
-          </ul>
-          <div class="tl-tags"><span class="tag">PAN-OS</span><span class="tag">BPA</span><span class="tag">SLR</span><span class="tag">Training</span><span class="tag">ROI Optimisation</span></div>
-        </div>
-      </div>
-
-      <div class="tl-item rv">
-        <div class="tl-dot"></div>
-        <div class="tl-hdr">
-          <div><div class="tl-co">Dimension Data</div><div class="tl-role">Remote MSSP Engineer — Western Cape Security Operations</div><div class="tl-loc"><i class="fa-solid fa-location-dot"></i> Harare, Zimbabwe (Remote)</div></div>
-          <div class="tl-dt">May 2022 – June 2023</div>
-        </div>
-        <div class="tl-body">
-          <p class="tl-intro">Remote member of the Western Cape Security Operations team managing a distributed estate of <strong>35 Azure VM-Series and PA-Series firewalls across 5 cities and 4 continents</strong>, protecting public cloud and on-premises networks.</p>
-          <ul class="tl-ul">
-            <li>Centrally managed firewall security, authentication, <strong>SSL/TLS decryption</strong>, and address translation policies across the multi-continent estate via <strong>Panorama</strong>.</li>
-            <li>Recommended and implemented <strong>IDS/IPS profiles</strong> on client networks where previously undetected threats were traversing the environment — a direct, measurable improvement in threat containment.</li>
-            <li>Conducted daily <strong>Security Device Health Checks, SLRs, and BPAs</strong>, surfacing misconfigurations and posture gaps proactively.</li>
-            <li>Founded an internal <strong>knowledge-sharing circle</strong> of 4 colleagues focused on PANW operational best practices, fostering a culture of continuous learning.</li>
-          </ul>
-          <div class="tl-tags"><span class="tag">Panorama</span><span class="tag">PA-Series</span><span class="tag">VM-Series</span><span class="tag">IDS/IPS</span><span class="tag">MSSP</span><span class="tag">SSL/TLS</span></div>
-        </div>
-      </div>
-
-      <div class="tl-item rv">
-        <div class="tl-dot"></div>
-        <div class="tl-hdr">
-          <div><div class="tl-co">City of Cape Town</div><div class="tl-role">Security Project Consultant — NGFW & IPS</div><div class="tl-loc"><i class="fa-solid fa-location-dot"></i> Cape Town, South Africa</div></div>
-          <div class="tl-dt">Nov 2018 – May 2022</div>
-        </div>
-        <div class="tl-body">
-          <p class="tl-intro">Centralised security consultant responsible for 10 Palo Alto Networks PA-Series physical devices across the City's infrastructure, managed via Panorama.</p>
-          <ul class="tl-ul">
-            <li><strong>Designed and deployed GlobalProtect VPN</strong> enabling 15,000 municipal employees to work securely from home — delivered within days of the COVID-19 national lockdown, ensuring uninterrupted government service delivery.</li>
-            <li>Integrated <strong>SIEM and centralised logging</strong>, improving incident detection capability and audit trail coverage.</li>
-            <li>Designed and implemented <strong>Data Centre Internet Breakout security architecture</strong>, strengthening the boundary between internal networks and external-facing services.</li>
-            <li>Configured and maintained <strong>HA/redundancy, VPN, threat prevention profiles</strong>, and continuous traffic monitoring.</li>
-          </ul>
-          <div class="tl-tags"><span class="tag">GlobalProtect</span><span class="tag">PA-Series</span><span class="tag">SIEM</span><span class="tag">VPN</span><span class="tag">Public Sector</span></div>
-        </div>
-      </div>
-
-      <div class="tl-item rv">
-        <div class="tl-dot"></div>
-        <div class="tl-hdr">
-          <div><div class="tl-co">Computacenter UK</div><div class="tl-role">Network Analyst — UK Managed Services</div><div class="tl-loc"><i class="fa-solid fa-location-dot"></i> Cape Town, South Africa</div></div>
-          <div class="tl-dt">June 2016 – July 2018</div>
-        </div>
-        <div class="tl-body">
-          <p class="tl-intro">Enterprise networking support for a UK-based managed services provider, focused on monitoring, incident management, and firewall policy optimisation.</p>
-          <ul class="tl-ul">
-            <li>Monitored network performance using <strong>SolarWinds, TCPDump, and Wireshark</strong>; diagnosed BGP and EIGRP routing issues across Data Centres.</li>
-            <li>Supported <strong>Checkpoint and Cisco ASA</strong> firewall rule creation and optimisation.</li>
-            <li>Implemented <strong>Cisco NetFlow</strong> to investigate and resolve over-utilised links; managed SNMP configurations and device health reporting.</li>
-          </ul>
-          <div class="tl-tags"><span class="tag">Cisco ASA</span><span class="tag">NetFlow</span><span class="tag">BGP</span><span class="tag">SolarWinds</span><span class="tag">Wireshark</span></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="wrap">
-    <p class="s-lbl rv">Credentials</p>
-    <h2 class="s-title rv d1">Certifications & Accreditations</h2>
-    <p class="s-sub rv d2">A broad portfolio spanning Palo Alto Networks, Fortinet, Cisco, Microsoft, and cloud security — with an ambitious 2026 roadmap anchored by the PCSPI instructor credential.</p>
-
-    <div class="cert-row-lbl rv">Active Certifications</div>
-    <div class="cert-grid rv d1">
-      <div class="cert-card"><div class="cc-ic gold"><i class="fa-solid fa-star"></i></div><div><div class="cc-nm">PCNSP</div><div class="cc-is">Palo Alto Networks</div></div></div>
-      <div class="cert-card"><div class="cc-ic"><i class="fa-solid fa-server"></i></div><div><div class="cc-nm">Hardware Firewall Technical Readiness</div><div class="cc-is">Palo Alto Networks</div></div></div>
-      <div class="cert-card"><div class="cc-ic"><i class="fa-solid fa-cloud"></i></div><div><div class="cc-nm">Software Firewall Technical Readiness</div><div class="cc-is">Palo Alto Networks</div></div></div>
-      <div class="cert-card"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">CMNE-F</div><div class="cc-is">Cisco Meraki</div></div></div>
-    </div>
-
-    <div class="cert-row-lbl rv">Legacy & Foundation Credentials</div>
-    <div class="cert-grid rv d1">
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">PCNSA</div><div class="cc-is">Palo Alto Networks</div></div></div>
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">PSE: Strata Professional</div><div class="cc-is">Palo Alto Networks</div></div></div>
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">ACE</div><div class="cc-is">Palo Alto Networks</div></div></div>
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">NSE3</div><div class="cc-is">Fortinet</div></div></div>
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">MCSE & MCT</div><div class="cc-is">Microsoft</div></div></div>
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">ITIL v3 Foundation</div><div class="cc-is">AXELOS</div></div></div>
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">CCNA Routing & Switching</div><div class="cc-is">Cisco</div></div></div>
-      <div class="cert-card legacy"><div class="cc-ic"><i class="fa-solid fa-certificate"></i></div><div><div class="cc-nm">Cybersecurity Operations Associate</div><div class="cc-is">Cisco</div></div></div>
-    </div>
-
-    <div class="cert-row-lbl rv">2026 Certification Goals</div>
-    <div class="ip-grid rv d1">
-      <div class="ip-card star">
-        <div class="ip-hdr"><div class="ip-ic star"><i class="fa-solid fa-chalkboard-user"></i></div><div><div class="ip-nm">PCSPI — Certified Security Platform Instructor</div><div class="ip-note star">⭐ Flagship Goal · Palo Alto Networks</div></div></div>
-        <div class="prog"><div class="prog-f gold" data-w="65"></div></div>
-      </div>
-      <div class="ip-card">
-        <div class="ip-hdr"><div class="ip-ic"><i class="fa-solid fa-magnifying-glass"></i></div><div><div class="ip-nm">PCNSA — Certified Network Security Analyst</div><div class="ip-note">In Progress · Palo Alto Networks</div></div></div>
-        <div class="prog"><div class="prog-f" data-w="55"></div></div>
-      </div>
-      <div class="ip-card">
-        <div class="ip-hdr"><div class="ip-ic"><i class="fa-solid fa-network-wired"></i></div><div><div class="ip-nm">CSEE — Certified Service Edge Engineer</div><div class="ip-note">In Progress · Palo Alto Networks</div></div></div>
-        <div class="prog"><div class="prog-f" data-w="40"></div></div>
-      </div>
-      <div class="ip-card">
-        <div class="ip-hdr"><div class="ip-ic"><i class="fa-solid fa-cloud-arrow-up"></i></div><div><div class="ip-nm">CCSP — Certified Cloud Security Professional</div><div class="ip-note">In Progress · Palo Alto Networks</div></div></div>
-        <div class="prog"><div class="prog-f" data-w="35"></div></div>
-      </div>
-      <div class="ip-card">
-        <div class="ip-hdr"><div class="ip-ic"><i class="fa-solid fa-key"></i></div><div><div class="ip-nm">CCSK — Cloud Security Knowledge</div><div class="ip-note">In Progress · CSA</div></div></div>
-        <div class="prog"><div class="prog-f" data-w="30"></div></div>
-      </div>
-      <div class="ip-card">
-        <div class="ip-hdr"><div class="ip-ic blue"><i class="fa-brands fa-microsoft"></i></div><div><div class="ip-nm">Azure Security Engineer Associate</div><div class="ip-note">In Progress · Microsoft</div></div></div>
-        <div class="prog"><div class="prog-f" data-w="45"></div></div>
-      </div>
-      <div class="ip-card">
-        <div class="ip-hdr"><div class="ip-ic blue"><i class="fa-brands fa-aws"></i></div><div><div class="ip-nm">AWS Security – Specialty</div><div class="ip-note">In Progress · Amazon</div></div></div>
-        <div class="prog"><div class="prog-f" data-w="30"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- KOWOYO TRAINING ORGANISATION -->
-<section id="kowoyo">
-  <div class="wrap">
-    <p class="s-lbl rv">Training Organisation</p>
-    <h2 class="s-title rv d1">Training the Next Generation of NGFW Operators</h2>
-    <div class="kow-grid" style="margin-top:2.5rem">
-      <div class="kow-content rv">
-        <p><strong>Kowoyo Networks</strong>, founded in 2023, is an independent enterprise network security training organisation built around one belief: that sustainable security posture requires technically competent operators — not just better tools.</p>
-        <p>Specialising in <strong>Palo Alto Networks NGFW platforms</strong>, the curriculum spans from foundational PAN-OS awareness through to advanced policy management, full-stack security capability utilization, BPAs, SLRs, and Firewall Policy Reviews.</p>
-        <p>Delivery is dual-track: <em>hands-on technical training</em> for engineers building operational proficiency, and <em>executive stakeholder education</em> on risk implications, governance obligations, and security investment value.</p>
-        <p>Elvis is actively pursuing <strong>PCSPI (Palo Alto Networks Certified Security Platform Instructor)</strong> — Palo Alto Networks' own formal teaching accreditation — cementing Kowoyo Networks as a verifiably credentialled NGFW training provider.</p>
-        <a href="#contact" class="kow-cta"><i class="fa-solid fa-chalkboard-user"></i> Enquire About Training</a>
-      </div>
-      <div class="kow-visual rv d1">
-        <div class="kow-stat-grid">
-          <div class="kow-stat"><div class="kow-stat-n">2023</div><div class="kow-stat-l">Founded</div></div>
-          <div class="kow-stat"><div class="kow-stat-n">PANW</div><div class="kow-stat-l">Primary Platform</div></div>
-          <div class="kow-stat"><div class="kow-stat-n">2-Track</div><div class="kow-stat-l">Delivery Model</div></div>
-          <div class="kow-stat"><div class="kow-stat-n">Remote</div><div class="kow-stat-l">& On-site</div></div>
-        </div>
-        <ul class="kow-modules">
-          <li>PAN-OS Fundamentals & Security Policy Management</li>
-          <li>Full-stack capability activation — App-ID, User-ID, Content-ID</li>
-          <li>SSL/TLS Decryption, WildFire, DNS Security, DLP</li>
-          <li>Security Lifecycle Reviews (SLRs) & Best Practice Assessments</li>
-          <li>Firewall Policy Reviews & Configuration Audits</li>
-          <li>Executive security governance & ROI briefings</li>
-        </ul>
-        <div class="pcspi-box">
-          <i class="fa-solid fa-star pcspi-ic"></i>
-          <div class="pcspi-txt"><strong>PCSPI in progress</strong> — Palo Alto Networks Certified Security Platform Instructor. The formal PANW teaching accreditation that makes Kowoyo Networks a verifiably credentialled training provider.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <p class="s-lbl rv">Get In Touch</p>
-    <h2 class="s-title rv d1">Is your firewall's full capability activated?</h2>
-    <p class="s-sub rv d2">Let's find out — and fix what's not. Whether you need a posture audit, an SLR/BPA, hands-on NGFW training for your team, or simply a conversation about where your firewall investment is and isn't working — reach out.</p>
-    <div class="ct-grid">
-      <div class="ct-items rv">
-        <div class="ct-item"><div class="ct-ic"><i class="fa-solid fa-envelope"></i></div><div><div class="ct-lbl">Email</div><div class="ct-val"><a href="mailto:ekupara@msn.com">ekupara@msn.com</a></div></div></div>
-        <div class="ct-item"><div class="ct-ic"><i class="fa-solid fa-phone"></i></div><div><div class="ct-lbl">Phone</div><div class="ct-val"><a href="tel:+27716181119">+27 71 618 1119</a></div></div></div>
-        <div class="ct-item"><div class="ct-ic"><i class="fa-brands fa-linkedin"></i></div><div><div class="ct-lbl">LinkedIn</div><div class="ct-val"><a href="https://www.linkedin.com/in/kuparaelvis" target="_blank" rel="noopener noreferrer">linkedin.com/in/kuparaelvis</a></div></div></div>
-        <div class="ct-item"><div class="ct-ic"><i class="fa-solid fa-location-dot"></i></div><div><div class="ct-lbl">Location</div><div class="ct-val">Goromonzi, Zimbabwe</div></div></div>
-        <div class="ct-item"><div class="ct-ic"><i class="fa-solid fa-globe"></i></div><div><div class="ct-lbl">Availability</div><div class="ct-val">Remote & On-site Engagements</div></div></div>
-      </div>
-      <div class="ct-form rv d1">
-        <form id="cForm" action="https://formspree.io/f/mbdwqoeo" method="POST" novalidate>
-          <div class="fg"><label for="fn">Your Name</label><input type="text" id="fn" name="name" placeholder="Jane Smith" required autocomplete="name"/></div>
-          <div class="fg"><label for="fe">Email Address</label><input type="email" id="fe" name="email" placeholder="jane@company.com" required autocomplete="email"/></div>
-          <div class="fg"><label for="fs">Subject</label><input type="text" id="fs" name="subject" placeholder="Training enquiry / Security engagement"/></div>
-          <div class="fg"><label for="fm">Message</label><textarea id="fm" name="message" placeholder="Tell me about your project or requirement..." required></textarea></div>
-          <button type="submit" class="btn-p" style="width:100%;justify-content:center"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
-        </form>
-        <div class="form-ok" id="fOk" role="alert"><i class="fa-solid fa-circle-check"></i>Message sent — I'll be in touch shortly.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="ft-copy">© 2026 <span>Elvis Kupara</span> · NGFW Specialist · Kowoyo Networks · SIG-CYBER</div>
-  <div class="ft-soc">
-    <a href="https://www.linkedin.com/in/kuparaelvis" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-    <a href="mailto:ekupara@msn.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-    <a href="tel:+27716181119" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
-  </div>
-</footer>
-
-<script>
-// typewriter
-const tw=document.getElementById('tw');
-const phrases=["NGFW Specialist","Palo Alto Networks Expert","PCNSP Certified","Certified Security Trainer","Founder, Kowoyo Networks","Future PCSPI Instructor"];
-let pi=0,ci=0,del=false;
-function type(){
-  const p=phrases[pi];
-  if(!del){tw.textContent=p.slice(0,++ci);if(ci===p.length){del=true;setTimeout(type,2200);return;}}
-  else{tw.textContent=p.slice(0,--ci);if(ci===0){del=false;pi=(pi+1)%phrases.length;setTimeout(type,420);return;}}
-  setTimeout(type,del?42:78);
-}
-type();
-
-// theme
-const html=document.documentElement;
-const tBtn=document.getElementById('themeBtn');
-const tIco=document.getElementById('themeIco');
-tBtn.addEventListener('click',()=>{
-  const d=html.dataset.theme==='dark';
-  html.dataset.theme=d?'light':'dark';
-  tIco.className=d?'fa-solid fa-sun':'fa-solid fa-moon';
-});
-
-// mobile
-const burger=document.getElementById('burger');
-const mob=document.getElementById('mob');
-burger.addEventListener('click',()=>mob.classList.toggle('open'));
-burger.addEventListener('keydown',e=>{if(e.key==='Enter')mob.classList.toggle('open');});
-function cMob(){mob.classList.remove('open');}
-
-// scroll reveal
-const rvEls=document.querySelectorAll('.rv');
-const rvObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rvObs.unobserve(e.target);}});},{threshold:.1});
-rvEls.forEach(el=>rvObs.observe(el));
-
-// progress bars
-const bars=document.querySelectorAll('.prog-f');
-const bObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.width=e.target.dataset.w+'%';},250);bObs.unobserve(e.target);}});},{threshold:.5});
-bars.forEach(b=>bObs.observe(b));
-
-// nav shadow on scroll
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').style.boxShadow=window.scrollY>20?'0 4px 30px rgba(0,0,0,.35)':'none';
-},{ passive:true });
-
-// contact form — Formspree submission
-document.getElementById('cForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const name=document.getElementById('fn').value.trim();
-  const email=document.getElementById('fe').value.trim();
-  const msg=document.getElementById('fm').value.trim();
-  if(!name||!email||!msg)return;
-  const btn=this.querySelector('button[type=submit]');
-  btn.disabled=true;btn.innerHTML='<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-  fetch('https://formspree.io/f/mbdwqoeo',{
-    method:'POST',
-    headers:{'Accept':'application/json','Content-Type':'application/json'},
-    body:JSON.stringify({name,email,subject:document.getElementById('fs').value.trim(),message:msg})
-  })
-  .then(r=>{
-    if(r.ok){this.style.display='none';document.getElementById('fOk').style.display='block';}
-    else{btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Message';alert('Something went wrong. Please email directly at ekupara@msn.com');}
-  })
-  .catch(()=>{
-    btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Send Message';
-    alert('Network error. Please email directly at ekupara@msn.com');
-  });
-});
-</script>
-</body>
-</html>
