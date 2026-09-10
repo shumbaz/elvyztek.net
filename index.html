@@ -363,6 +363,16 @@
     }
     .contact-icon--whatsapp{background:rgba(37,211,102,.12);color:#62e794}
     .contact-icon--whatsapp svg{width:23px;height:23px}
+
+    .founder-card::before{content:none}
+    .founder-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+    .founder-card::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.75));pointer-events:none}
+    .founder-label{z-index:2}.founder-label span{color:#ddd}
+    .podcast-feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center;min-height:0;border-color:var(--line-red)}
+    .podcast-feature>div{min-width:0}.podcast-feature h3{margin-top:10px}
+    .podcast-player{display:block;width:100%;max-width:100%;color-scheme:dark;margin:8px 0}
+    .podcast-feature .podcast-download{padding-top:8px;font-size:.875rem}
+    @media(max-width:760px){.podcast-feature{grid-template-columns:1fr;gap:14px}}
   </style>
   <script type="application/ld+json">
   {
@@ -520,8 +530,8 @@
 
   <section class="section section--dark" id="about" aria-labelledby="about-title">
     <div class="container founder-grid">
-      <div class="founder-card reveal"><div class="founder-label"><strong>Elvis Kupara</strong><span>Founder & Principal Trainer · Kowoyo Networks</span></div></div>
-      <div class="founder-copy reveal"><span class="eyebrow">Founder</span><h2 id="about-title">Operational experience. <span class="accent">Practical teaching.</span></h2><p>Elvis Kupara is a senior Firewall &amp; Network Security Engineer and cybersecurity trainer with 7+ years specialising in enterprise NGFW operations and management. His professional experience includes managing 35+ firewalls across 4 continents and leading emergency VPN delivery for 15,000 users during the COVID-19 lockdown. This career experience informs Kowoyo Networks’ focus on operational ownership and sustainable security capability.</p><p>A Founding Committee Member of SIG-CYBER (IITPSA), Elvis founded Kowoyo Networks in 2023 to scale that operational discipline into a training practice, helping teams build practical proficiency with Palo Alto Networks firewalls.</p><p><a class="text-link" href="#credentials">View founder credentials and their status →</a></p><div class="founder-quote">“My job is to close the gap between security capability and security reality.”</div><div class="founder-links"><a class="btn btn-secondary" href="https://www.linkedin.com/in/kuparaelvis" target="_blank" rel="noopener noreferrer">Personal LinkedIn ↗</a></div></div>
+      <div class="founder-card reveal"><img class="founder-photo" src="photo.jpg" alt="Elvis Kupara, founder of Kowoyo Networks" width="592" height="596" loading="lazy" decoding="async"><div class="founder-label"><strong>Elvis Kupara</strong><span>Founder & Principal Trainer · Kowoyo Networks</span></div></div>
+      <div class="founder-copy reveal"><span class="eyebrow">Founder</span><h2 id="about-title">Operational experience. <span class="accent">Practical teaching.</span></h2><p>Elvis Kupara is a senior Firewall &amp; Network Security Engineer and cybersecurity trainer with 7+ years specialising in enterprise NGFW operations and management. His professional experience includes managing 35+ firewalls across 4 continents and leading emergency VPN delivery for 15,000 users during the COVID-19 lockdown. This career experience informs Kowoyo Networks’ focus on operational ownership and sustainable security capability.</p><p>A Founding Committee Member of SIG-CYBER (IITPSA), Elvis founded Kowoyo Networks in 2023 to scale that operational discipline into a training practice, helping teams build practical proficiency with Palo Alto Networks firewalls.</p><p><a class="text-link" href="#credentials">View founder credentials and their status →</a></p><div class="founder-quote">“My job is to close the gap between security capability and security reality.”</div><div class="founder-links"><a class="btn btn-secondary" href="https://www.linkedin.com/in/kuparaelvis" target="_blank" rel="noopener noreferrer">Personal LinkedIn ↗</a><a class="btn btn-secondary" href="#podcast">Listen to Podcast →</a></div></div>
     </div>
   </section>
 
@@ -535,8 +545,13 @@
 
   <section class="section section--dark" id="insights" aria-labelledby="insights-title">
     <div class="container">
-      <div class="section-heading"><span class="eyebrow">Insights &amp; Resources</span><h2 id="insights-title">Practical perspectives on <span class="accent">NGFW operations.</span></h2><p>Explore operational lessons on LinkedIn, or download an overview of Kowoyo Networks’ services and training.</p></div>
+      <div class="section-heading"><span class="eyebrow">Insights &amp; Resources</span><h2 id="insights-title">Practical perspectives on <span class="accent">NGFW operations.</span></h2><p>Listen to Elvis Kupara’s podcast, explore operational lessons on LinkedIn, or download an overview of Kowoyo Networks’ services and training.</p></div>
       <div class="insight-grid">
+        <article class="insight podcast-feature" id="podcast" aria-labelledby="podcast-title">
+          <div><span class="insight-type">Podcast · 12 min 22 sec</span><h3 id="podcast-title">Elvis Kupara’s podcast</h3><p>Listen here, or download the MP3 to play later.</p></div>
+          <div><audio class="podcast-player" controls preload="none" aria-labelledby="podcast-title"><source src="elvis-podcast.mp3" type="audio/mpeg">Your browser does not support the audio player. Use the MP3 download link below.</audio><a class="podcast-download" href="elvis-podcast.mp3" download="elvis-podcast.mp3">Download podcast (MP3) ↓</a></div>
+        </article>
+        
         <article class="insight"><span class="insight-type">LinkedIn</span><h3>NGFW operations in practice</h3><p>Perspectives on operational ownership, rulebase governance, security capability adoption and the people who run the firewall.</p><a href="https://www.linkedin.com/company/kowoyo-networks" target="_blank" rel="noopener noreferrer">Visit Kowoyo Networks on LinkedIn ↗</a></article>
         <article class="insight"><span class="insight-type">Company profile · PDF</span><h3>Capabilities at a glance</h3><p>A concise overview of our services, delivery approach and founder experience for security leaders, training teams and procurement conversations.</p><a class="capability-download" href="Kowoyo_Networks_Capability_Statement.pdf" download>Download capability statement ↓</a></article>
       </div>
