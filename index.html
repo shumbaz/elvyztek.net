@@ -104,7 +104,9 @@
     .hero-panel{position:relative;padding:24px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow);overflow:hidden}
     .hero-panel::before{content:"";position:absolute;inset:0 auto auto 0;width:100%;height:4px;background:linear-gradient(90deg,var(--red),transparent)}
     .terminal-label{display:flex;justify-content:space-between;align-items:center;color:#b2b2b2;font-size:0.875rem;text-transform:uppercase;letter-spacing:.14em;font-weight:800;margin-bottom:25px}
-    .status-dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(37,211,102,.08)}
+    .status-indicator{display:inline-flex;align-items:center;gap:10px;white-space:nowrap}
+    .terminal-label{gap:16px;flex-wrap:wrap}
+    .status-dot{flex-shrink:0;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(37,211,102,.08)}
     .cap-list{display:grid;gap:11px}
     .cap-row{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:13px;border:1px solid rgba(255,255,255,.08);border-radius:13px;background:#0d0d0d}
     .cap-icon{width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line-red);border-radius:8px;color:#ff5968;font-size:0.875rem;font-weight:900}
@@ -151,7 +153,7 @@
     .step:not(:first-child){padding-left:28px}
     .step:last-child{border-right:0}
     .step-no{font-size:0.875rem;font-weight:900;color:#ff5f6d;letter-spacing:.15em;text-transform:uppercase}
-    .step-num{font-size:4.8rem;font-weight:950;line-height:1;color:rgba(225,6,26,.14);letter-spacing:-.08em;margin:20px 0 7px}
+    .step-num{font-size:4.8rem;font-weight:950;line-height:1;color:#ff5f6d;letter-spacing:-.08em;margin:20px 0 7px}
     .step h3{font-size:1.3rem;margin:0 0 10px}
     .step p{color:#969696;font-size:.9rem;margin:0;max-width:300px}
     .step-points{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:7px}
@@ -250,6 +252,11 @@
     .honeypot{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
     .form-footer{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
     .privacy-note{color:#b2b2b2;font-size:0.875rem;max-width:430px}
+    .field-error{color:#ff9da7;font-size:.875rem;line-height:1.5}
+    .field-error[hidden]{display:none}
+    .field [aria-invalid="true"]{border-color:#ff9da7}
+    .form-status a{text-decoration:underline}
+    .form-status:focus{outline:2px solid #fff;outline-offset:3px}
     .form-status{display:none;margin-top:15px;padding:12px 14px;border-radius:10px;font-size:0.875rem}
     .form-status.success{display:block;background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.22);color:#aeeac2}
     .form-status.error{display:block;background:var(--red-soft);border:1px solid var(--line-red);color:#ff9da7}
@@ -371,7 +378,8 @@
     .podcast-feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center;min-height:0;border-color:var(--line-red)}
     .podcast-feature>div{min-width:0}.podcast-feature h3{margin-top:10px}
     .podcast-player{display:block;width:100%;max-width:100%;color-scheme:dark;margin:8px 0}
-    .podcast-feature .podcast-download{padding-top:8px;font-size:.875rem}
+    .podcast-links{display:flex;flex-wrap:wrap;gap:0 20px;align-items:center}
+    .podcast-feature .podcast-links a{display:inline-flex;align-items:center;min-height:44px;padding-top:8px;font-size:.875rem;text-decoration:underline;text-underline-offset:3px}
     @media(max-width:760px){.podcast-feature{grid-template-columns:1fr;gap:14px}}
 
     /* A shared second row aligns the identity panel with the founder buttons. */
@@ -417,13 +425,13 @@
       <li><a href="#insights">Insights &amp; Resources</a></li>
     </ul>
     <div class="nav-actions">
-      <a class="btn btn-primary" href="#contact">Book an Assessment</a>
+      <a class="btn btn-primary" href="#contact">Request an NGFW Assessment</a>
       <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">☰</button>
     </div>
   </nav>
   <div class="mobile-nav container" id="mobile-nav">
     <a href="#problem">Why Kowoyo</a><a href="#services">Services</a><a href="#approach">Approach</a><a href="#training">Training</a><a href="#about">About</a><a href="#insights">Insights &amp; Resources</a>
-    <a class="btn btn-primary" href="#contact">Book an Assessment</a>
+    <a class="btn btn-primary" href="#contact">Request an NGFW Assessment</a>
   </div>
 </header>
 
@@ -437,7 +445,7 @@
         <h1 id="hero-title">Your firewall is capable.<br><span class="accent">Is your operation?</span></h1>
         <p class="hero-lead">Kowoyo Networks helps organisations <strong>operate, manage, audit and optimise</strong> their Next-Generation Firewalls, while building the technical capability needed to sustain effective security over time.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">Book an NGFW Assessment <span aria-hidden="true">→</span></a>
+          <a class="btn btn-primary" href="#contact">Request an NGFW Assessment <span aria-hidden="true">→</span></a>
           <a class="btn btn-secondary" href="#services">Explore Services</a>
         </div>
         <div class="hero-proof" aria-label="Kowoyo Networks highlights">
@@ -448,7 +456,7 @@
       </div>
       <div class="hero-panel reveal" aria-label="Illustrative NGFW capability dashboard">
         <img class="hero-panel-logo" src="assets/kowoyo-logo.png" alt="Kowoyo Networks" width="112" height="105">
-        <div class="terminal-label"><span>Security capability view</span><span class="status-dot" aria-label="Operational status"></span></div>
+        <div class="terminal-label"><span>Security capability view</span><span class="status-indicator"><span class="status-dot" aria-hidden="true"></span>Operational</span></div>
         <div class="cap-list">
           <div class="cap-row"><span class="cap-icon">A</span><div><strong>Application visibility</strong><small>App-ID & policy context</small></div><span class="cap-state">Enable</span></div>
           <div class="cap-row"><span class="cap-icon">U</span><div><strong>User awareness</strong><small>User-ID & identity context</small></div><span class="cap-state">Enable</span></div>
@@ -564,7 +572,7 @@
       <div class="insight-grid">
         <article class="insight podcast-feature" id="podcast" aria-labelledby="podcast-title">
           <div><span class="insight-type">Podcast · 12 min 22 sec</span><h3 id="podcast-title">Elvis Kupara’s podcast</h3><p>Listen here, or download the MP3 to play later.</p></div>
-          <div><audio class="podcast-player" controls preload="none" aria-labelledby="podcast-title"><source src="elvis-podcast.mp3" type="audio/mpeg">Your browser does not support the audio player. Use the MP3 download link below.</audio><a class="podcast-download" href="elvis-podcast.mp3" download="elvis-podcast.mp3">Download podcast (MP3) ↓</a></div>
+          <div><audio class="podcast-player" controls preload="none" aria-labelledby="podcast-title"><source src="elvis-podcast.mp3" type="audio/mpeg">Your browser does not support the audio player. Use the MP3 download link below.</audio><div class="podcast-links"><a class="podcast-download" href="elvis-podcast.mp3" download="elvis-podcast.mp3">Download podcast (MP3) ↓</a><a href="podcast-transcript.html">Read Podcast Transcript</a></div></div>
         </article>
         
         <article class="insight"><span class="insight-type">LinkedIn</span><h3>NGFW operations in practice</h3><p>Perspectives on operational ownership, rulebase governance, security capability adoption and the people who run the firewall.</p><a href="https://www.linkedin.com/company/kowoyo-networks" target="_blank" rel="noopener noreferrer">Visit Kowoyo Networks on LinkedIn ↗</a></article>
@@ -576,7 +584,7 @@
   <section class="cta-band" aria-labelledby="cta-title">
     <div class="container cta-grid">
       <div class="reveal"><span class="eyebrow">Start with evidence</span><h2 id="cta-title">Find out what your firewall is really doing.</h2><p>Whether you need a posture audit, SLR/BPA, policy review, operational support or hands-on training, start with a conversation about where your security investment is working and where it is not.</p></div>
-      <a class="btn btn-primary reveal" href="#contact">Book an NGFW Assessment →</a>
+      <a class="btn btn-primary reveal" href="#contact">Request an NGFW Assessment →</a>
     </div>
   </section>
 
@@ -587,21 +595,22 @@
         <h3>Start an enquiry</h3><p>Tell us about your environment and the outcome you need. We’ll use your details to respond to this enquiry.</p>
         <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
         <div class="form-grid">
-          <div class="field"><label for="name">Your name</label><input id="name" name="name" autocomplete="name" required placeholder="Full name"></div>
-          <div class="field"><label for="email">Business email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="name@company.com"></div>
-          <div class="field"><label for="organisation">Organisation</label><input id="organisation" name="organisation" autocomplete="organization" placeholder="Organisation name"></div>
-          <div class="field"><label for="role">Your role</label><input id="role" name="role" autocomplete="organization-title" placeholder="e.g. Security Manager"></div>
-          <div class="field"><label for="service">What do you need?</label><select id="service" name="service"><option value="">Select an option</option><option>NGFW assessment / audit</option><option>Operations & management support</option><option>NGFW training</option><option>Policy review / optimisation</option><option>Executive briefing</option><option>Other</option></select></div>
-          <div class="field"><label for="country">Country</label><input id="country" name="country" autocomplete="country-name" placeholder="Country"></div>
-          <div class="field full"><label for="message">How can we help?</label><p class="field-hint" id="message-help">Please leave out passwords, firewall configurations and sensitive personal information.</p><textarea aria-describedby="message-help" id="message" name="message" required placeholder="Describe the environment, challenge or outcome you are working towards."></textarea></div>
+          <div class="field"><label for="name">Your name (required)</label><input id="name" name="name" autocomplete="name" required placeholder="Full name"><span class="field-error" id="name-error" hidden></span></div>
+          <div class="field"><label for="email">Business email (required)</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="name@company.com"><span class="field-error" id="email-error" hidden></span></div>
+          <div class="field"><label for="organisation">Organisation</label><input id="organisation" name="organisation" autocomplete="organization" placeholder="Organisation name"><span class="field-error" id="organisation-error" hidden></span></div>
+          <div class="field"><label for="role">Your role</label><input id="role" name="role" autocomplete="organization-title" placeholder="e.g. Security Manager"><span class="field-error" id="role-error" hidden></span></div>
+          <div class="field"><label for="service">What do you need?</label><select id="service" name="service"><option value="">Select an option</option><option>NGFW assessment / audit</option><option>Operations & management support</option><option>NGFW training</option><option>Policy review / optimisation</option><option>Executive briefing</option><option>Other</option></select><span class="field-error" id="service-error" hidden></span></div>
+          <div class="field"><label for="country">Country</label><input id="country" name="country" autocomplete="country-name" placeholder="Country"><span class="field-error" id="country-error" hidden></span></div>
+          <div class="field full"><label for="message">How can we help? (required)</label><p class="field-hint" id="message-help">Please leave out passwords, firewall configurations and sensitive personal information.</p><textarea aria-describedby="message-help" id="message" name="message" required placeholder="Describe the environment, challenge or outcome you are working towards."></textarea><span class="field-error" id="message-error" hidden></span></div>
         </div>
         <input type="hidden" name="_subject" value="New Kowoyo Networks website enquiry">
-        <div class="form-footer"><span class="privacy-note">We use your details to respond to your enquiry and discuss relevant services. Submitting this form does not subscribe you to marketing. <a href="#privacy">Read our privacy notice</a>.</span><button class="btn btn-primary" type="submit" id="submit-btn">Send Enquiry →</button></div>
-        <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        <div class="form-footer"><span class="privacy-note">We use your details to respond to your enquiry and discuss relevant services. Submitting this form does not subscribe you to marketing. <a data-privacy-link href="#privacy">Read our privacy notice</a>.</span><button class="btn btn-primary" type="submit" id="submit-btn">Send Enquiry →</button></div>
+        <div class="form-status" id="form-status" role="status" aria-live="polite" aria-atomic="true" tabindex="-1"></div>
       </form>
     </div>
   </section>
 
+  <!-- PRIVACY NOTICE START: standalone block; see README.txt for /privacy/ migration. -->
   <section class="section section--dark privacy-section" id="privacy" aria-labelledby="privacy-title">
     <div class="container">
       <div class="section-heading"><span class="eyebrow">Your information</span><h2 id="privacy-title">Website enquiry privacy notice</h2><p>How Kowoyo Networks uses information you share when enquiring about our services. Updated 9 September 2026.</p></div>
@@ -615,6 +624,7 @@
       </div>
     </div>
   </section>
+  <!-- PRIVACY NOTICE END -->
 </main>
 
 <footer>
@@ -622,10 +632,10 @@
     <div class="footer-grid">
       <div><a class="brand" href="#home" aria-label="Kowoyo Networks home"><span class="brand-mark" aria-hidden="true"><img class="brand-logo" src="assets/kowoyo-logo.png" alt="" width="112" height="105"></span><span><span class="brand-name">Kowoyo Networks</span><span class="brand-sub">NGFW Operations & Training</span></span></a><p class="footer-copy">Next-Generation Firewall Operations, Management and Training. Established in 2023. NGFW governance, optimisation and support, backed by practical training.</p><div class="social-row"><a class="social" href="https://www.linkedin.com/company/kowoyo-networks" target="_blank" rel="noopener noreferrer" aria-label="Kowoyo Networks on LinkedIn">in</a><a class="social" href="mailto:elvis@kowoyonetworks.com" aria-label="Email Kowoyo Networks">@</a><a class="social" href="tel:+27837020630" aria-label="Call Kowoyo Networks">☎</a></div></div>
       <div><div class="footer-title">Explore</div><ul class="footer-links"><li><a href="#problem">Why Kowoyo</a></li><li><a href="#services">Services</a></li><li><a href="#approach">Approach</a></li><li><a href="#about">About</a></li><li><a href="#proof">Experience</a></li></ul></div>
-      <div><div class="footer-title">Capability</div><ul class="footer-links"><li><a href="#training">Training</a></li><li><a href="#credentials">Credentials</a></li><li><a href="#insights">Insights &amp; Resources</a></li><li><a href="#contact">Book an Assessment</a></li></ul></div>
+      <div><div class="footer-title">Capability</div><ul class="footer-links"><li><a href="#training">Training</a></li><li><a href="#credentials">Credentials</a></li><li><a href="#insights">Insights &amp; Resources</a></li><li><a href="#contact">Request an NGFW Assessment</a></li></ul></div>
       <div><div class="footer-title">Contact</div><ul class="footer-links"><li><a href="mailto:elvis@kowoyonetworks.com">elvis@kowoyonetworks.com</a></li><li><a href="tel:+27837020630">+27 83 702 0630</a></li><li><a href="https://www.linkedin.com/company/kowoyo-networks" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li><li><a href="#contact">Start a conversation</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><span>© 2026 Kowoyo Networks. All rights reserved.</span><a href="#privacy">Privacy notice</a></div>
+    <div class="footer-bottom"><span>© 2026 Kowoyo Networks. All rights reserved.</span><a data-privacy-link href="#privacy">Privacy notice</a></div>
   </div>
 </footer>
 
@@ -658,27 +668,71 @@
 
   window.matchMedia('(min-width:1101px)').addEventListener('change',e=>{if(e.matches)closeMenu();});
   if(form){
+    const fields=Array.from(form.querySelectorAll('.field input, .field select, .field textarea'));
+    function setError(field,message){
+      const error=document.getElementById(field.id+'-error');
+      const descriptions=(field.getAttribute('aria-describedby')||'').split(/\s+/).filter(id=>id && id!==error.id);
+      error.textContent=message;error.hidden=!message;
+      if(message){field.setAttribute('aria-invalid','true');descriptions.push(error.id);}
+      else{field.removeAttribute('aria-invalid');}
+      if(descriptions.length){field.setAttribute('aria-describedby',descriptions.join(' '));}
+      else{field.removeAttribute('aria-describedby');}
+    }
+    function validationMessage(field){
+      if(field.required && !field.value.trim()){
+        return field.id==='name'?'Enter your name.':field.id==='email'?'Enter your email address.':'Describe how we can help.';
+      }
+      if(field.validity.typeMismatch){return 'Enter a valid email address, for example name@company.com.';}
+      return field.validity.valid?'':field.validationMessage;
+    }
+    function showStatus(message,type,focus=false){
+      status.textContent=message;status.className='form-status '+type;
+      if(focus){status.focus();}
+    }
+    function showDeliveryError(){
+      showStatus('We could not confirm delivery. Please try again or email ', 'error');
+      const emailLink=document.createElement('a');
+      emailLink.href='mailto:elvis@kowoyonetworks.com';emailLink.textContent='elvis@kowoyonetworks.com';
+      status.append(emailLink, ' directly.');status.focus();
+    }
+    fields.forEach(field=>{
+      const clearCorrectedError=()=>{if(field.hasAttribute('aria-invalid')){setError(field,validationMessage(field));}};
+      field.addEventListener('input',clearCorrectedError);
+      field.addEventListener('change',clearCorrectedError);
+    });
     form.addEventListener('submit',async e=>{
       e.preventDefault();
-      status.className='form-status';
-      status.textContent='';
-      if(document.getElementById('website').value){return;}
-      if(!form.checkValidity()){form.reportValidity();return;}
-      submit.disabled=true;submit.textContent='Sending…';
+      if(submit.disabled || document.getElementById('website').value){return;}
+      status.className='form-status';status.textContent='';
+      let firstInvalid;
+      fields.forEach(field=>{
+        const message=validationMessage(field);setError(field,message);
+        if(message && !firstInvalid){firstInvalid=field;}
+      });
+      if(firstInvalid){showStatus('Please correct the highlighted fields and send your enquiry again.','error');firstInvalid.focus();return;}
+      submit.disabled=true;submit.textContent='Sending…';form.setAttribute('aria-busy','true');
       const controller=new AbortController();
       const timeout=setTimeout(()=>controller.abort(),15000);
       try{
         const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'},signal:controller.signal});
         if(response.ok){
-          form.reset();
-          status.textContent='Thank you. Your enquiry has been sent. We will respond using the contact details provided.';
-          status.className='form-status success';
-        }else{throw new Error('Submission failed');}
-      }catch(error){
-        status.textContent='We could not submit the form just now. Please email elvis@kowoyonetworks.com directly.';
-        status.className='form-status error';
-      }finally{clearTimeout(timeout);submit.disabled=false;submit.textContent='Send Enquiry →';}
+          form.reset();fields.forEach(field=>setError(field,''));
+          showStatus('Thank you. Your enquiry has been sent. We will respond using the contact details provided.','success',true);
+        }else{
+          const data=await response.json().catch(()=>({}));
+          const errors=data && Array.isArray(data.errors)?data.errors:[];
+          errors.forEach(error=>{
+            const field=fields.find(item=>item.name===error.field);
+            if(field){setError(field,typeof error.message==='string'?error.message:'Please check this value.');if(!firstInvalid){firstInvalid=field;}}
+          });
+          if(firstInvalid){showStatus('Please correct the highlighted fields and send your enquiry again.','error');firstInvalid.focus();}
+          else{showDeliveryError();}
+        }
+      }catch(error){showDeliveryError();}
+      finally{clearTimeout(timeout);form.removeAttribute('aria-busy');submit.disabled=false;submit.textContent='Send Enquiry →';}
     });
+    // Keep native required/type validation when JavaScript is unavailable.
+    form.noValidate=true;
   }
 })();
 </script>
